@@ -1,6 +1,21 @@
 # CARA INSTALL STUNNEL SSH SSL/TLS DI UBUNTU & DEBIAN UNTUK KPN REVOLUTION
 **Tutorial by Galih Prastowo Aji**
 
+## Prelude: Pengguna AWS/GCP/ALIBABA CLOUD/AZURE/OpenStack
+ref from: https://github.com/Bangden/Multi-VPN-Debian-9
+
+
+Sebelum instalasi, saya menyarakan untuk mengubah konfigurasi cloud. Pastikan preserve_hostname sudah diubah menjadi true. Berikut cara mengubah konfigrasinya.
+```shell
+ls -l /etc/cloud/cloud.cfg
+```
+Output:
+```shell
+-rw-r--r-- 1 root root 3169 Mei 04 22:50 /etc/cloud/cloud.cfg
+sudo nano /etc/cloud/cloud.cfg
+```
+Ubah `preserve_hostname: false` menjadi `preserve_hostname: true`
+
 ## 1. Install dropbear dulu
 Di terminal ketik:
 ```shell
@@ -38,6 +53,14 @@ DROPBEAR_RECEIVE_WINDOW=65536
 Lalu jalankan dropbear:
 ```shell
 /etc/init.d/dropbear start
+```
+Tambahan dari https://linuxconfig.org/how-to-install-and-configure-dropbear-on-linux
+```shell
+# Start the service
+$ sudo systemctl start dropbear
+
+# Enable the service at boot
+$ sudo systemctl enable dropbear
 ```
 ## 1. Install stunnel
 Di terminal ketik:
